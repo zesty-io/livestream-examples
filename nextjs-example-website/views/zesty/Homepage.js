@@ -1,12 +1,40 @@
+import AwesomeHeader from 'components/elements/AwesomeHeader'
+import Header2 from 'components/elements/Header2'
 import React from 'react'
 
 export default function Homepage({content}){
     let thumbnailWidth = 150
     return (
         <> 
-            <img src={content.image.data[0].url} />
+            <img src={content.image?.data 
+                ? content.image.data[0].url : 
+                'https://qb1jbcfx.media.zestyio.com/IMG_3832.JPG?width=150'
+                } 
+                />
             <h1>{content.title}</h1>
-            <h2>{content.sub_title}</h2>
+            
+            {
+                content.sub_title && <Header2 text={content.sub_title} />
+            }
+            
+            <h3>
+            {
+                content.sub_title || `This is my backup sub title`
+            }
+            </h3>
+
+            { 
+                content.sub_title 
+                && content.title 
+                && content.image?.data
+                && <AwesomeHeader 
+                    title={content.title} 
+                    subtitle={content.sub_title}
+                    image={content.image.data[0].url} />
+                
+            }
+
+
             <div dangerouslySetInnerHTML={{__html:content.content}}></div>
             <h1>My Articles</h1>
             <div style={{display:'flex'}}>
