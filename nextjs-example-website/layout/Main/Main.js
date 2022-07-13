@@ -5,7 +5,7 @@
  */
 
 import * as React from 'react';
-import { Box, Container } from '@mui/material'
+import { Box, Container } from '@mui/material';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 

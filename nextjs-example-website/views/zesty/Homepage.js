@@ -1,9 +1,11 @@
 import AwesomeHeader from 'components/elements/AwesomeHeader'
 import Header2 from 'components/elements/Header2'
 import React from 'react'
+import { getCookie } from 'cookies-next';
 
 export default function Homepage({content}){
     let thumbnailWidth = 150
+    let campaignCookie = getCookie('utm_campaign'); // => 'value'
     return (
         <> 
             <img src={content.image?.data 
@@ -12,7 +14,11 @@ export default function Homepage({content}){
                 } 
                 />
             <h1>{content.title}</h1>
+            <h2>Campaign Cookie: {campaignCookie}</h2>
+            {campaignCookie == 'showpuppies' && <img width="50%" src="https://cf.ltkcdn.net/dogs/images/orig/236742-1600x1030-cutest-puppy-videos.jpg" />}
+            {campaignCookie == 'showcats' && <img width="50%" src="https://static7.depositphotos.com/1000291/676/i/450/depositphotos_6768780-stock-photo-little-british-shorthair-kittens-cat.jpg" />}
             
+
             {
                 content.sub_title && <Header2 text={content.sub_title} />
             }
