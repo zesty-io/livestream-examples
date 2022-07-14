@@ -42,13 +42,36 @@ export default function Homepage({content}){
 
 
             <div dangerouslySetInnerHTML={{__html:content.content}}></div>
-            <h1>My Articles</h1>
+            <h1>My Articles - sorted by title</h1>
             <div style={{display:'flex'}}>
-                {content.top_articles.data.map(article => 
+                {content.top_articles.data.sort((a,b) => a.title.localeCompare(b.title)).map(article => 
                     <div style={{backgroundColor: '#eee', width: thumbnailWidth, padding: '10px', marginRight: '10px'}}>
                         <a href={article.meta.web.uri}>
                             <img src={`${article.article_images.data[0].url}?crop=1:1&width=${thumbnailWidth}`} width={thumbnailWidth} />
-                            <h6>{article.meta.web.seo_meta_title}</h6>
+                            <h6>{article.meta.web.seo_meta_title} - Sort Order: {article.sort_order}</h6>
+                        </a>
+                    </div>
+                )}
+            </div>
+            <h1>My Articles - sorted by sort order</h1>
+            <div style={{display:'flex'}}>
+                {content.top_articles.data.sort((a,b) => a.sort_order - b.sort_order).map(article => 
+                    <div style={{backgroundColor: '#eee', width: thumbnailWidth, padding: '10px', marginRight: '10px'}}>
+                        <a href={article.meta.web.uri}>
+                            <img src={`${article.article_images.data[0].url}?crop=1:1&width=${thumbnailWidth}`} width={thumbnailWidth} />
+                            <h6>{article.meta.web.seo_meta_title} - Sort Order: {article.sort_order}</h6>
+                        </a>
+                    </div>
+                )}
+            </div>
+
+            <h1>My Articles - filter by string length (string over 20) and sort order Desc</h1>
+            <div style={{display:'flex'}}>
+                {content.top_articles.data.sort((a,b) => b.sort_order - a.sort_order).filter((o) => o.title.length < 20).map(article => 
+                    <div style={{backgroundColor: '#eee', width: thumbnailWidth, padding: '10px', marginRight: '10px'}}>
+                        <a href={article.meta.web.uri}>
+                            <img src={`${article.article_images.data[0].url}?crop=1:1&width=${thumbnailWidth}`} width={thumbnailWidth} />
+                            <h6>{article.meta.web.seo_meta_title} - Sort Order: {article.sort_order}</h6>
                         </a>
                     </div>
                 )}
