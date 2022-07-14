@@ -5,7 +5,6 @@
  */
 
 import * as React from 'react';
-import { Box, Container } from '@mui/material';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
@@ -29,19 +28,19 @@ const Main = ({
                   href="https://fonts.googleapis.com/icon?family=Material+Icons"
               />
           </Head>
-          <Box sx={{topBarStyles}}>
-              <Container>
+          <div sx={{topBarStyles}}>
+              <div>
                   <Header/>
-              </Container>
-          </Box>
-          <Container>
+              </div>
+          </div>
+          <div>
             {children}
-          </Container>
-          <Box>
-            <Container>
+          </div>
+          <div>
+            <div>
               <Footer/>
-            </Container>
-          </Box>
+            </div>
+          </div>
         </>
     )
 }
