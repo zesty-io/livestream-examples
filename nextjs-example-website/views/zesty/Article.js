@@ -26,11 +26,14 @@
  */
 
 import React  from 'react';
+import { AutoLayout } from "@zesty-io/react-autolayout";
+
 
 function Article({ content }) {
     let imageSize = 500;
     return (
         <>
+        <AutoLayout content={content} />
             Hello World!!
             {/* Zesty.io Output Example and accessible JSON object for this component. Delete or comment out when needed.  */}
             <h1 dangerouslySetInnerHTML={{__html:content.meta.web.seo_meta_title}}></h1>
