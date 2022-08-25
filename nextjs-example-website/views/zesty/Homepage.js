@@ -2,6 +2,7 @@ import AwesomeHeader from 'components/elements/AwesomeHeader'
 import Header2 from 'components/elements/Header2'
 import { React, useEffect } from 'react'
 import { getCookie } from 'cookies-next';
+import { event } from 'components/gtm'
 
 export default function Homepage({content}){
     let thumbnailWidth = 150
@@ -12,6 +13,8 @@ export default function Homepage({content}){
 
     return (
         <div> 
+
+            
             <img src={content.image?.data 
                 ? content.image.data[0].url : 
                 'https://qb1jbcfx.media.zestyio.com/IMG_3832.JPG?width=150'
@@ -19,6 +22,13 @@ export default function Homepage({content}){
                 />
             <h1>{content.title}</h1>
             <h2>Campaign Cookie: {campaignCookie}</h2>
+
+            <div style={{background: '#eee', padding:'20px'}}>
+                <h5>GTM Testing</h5>
+                <button className="ga-tester">Test Click me - Registed in GTM</button>
+                <button onClick={() => event('click',{'name':'custom click'})}>Custom Event</button>
+            </div>
+
             {campaignCookie == 'showpuppies' 
                 && <img width="50%" src="https://cf.ltkcdn.net/dogs/images/orig/236742-1600x1030-cutest-puppy-videos.jpg" />}
             {campaignCookie == 'showcats' 
