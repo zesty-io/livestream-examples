@@ -1,14 +1,35 @@
 import React from 'react'
 
+function checkStrLength(str, length){
+    return str.length > length
+}
+
+
 export default function FormExample(){
     const [values, setValues] = React.useState({
         firstName: '',
         lastName: '',
+        valid: false
     });
+
+    React.useEffect(() => {
+        
+        if(checkStrLength(values.lastName,2)) {
+            setValues({...values, 'valid': true}) 
+        } else {
+            setValues({...values, 'valid': false}) 
+        }
+
+    },[values.firstName,values.lastName]);
     
     const handleChange = e => {
         setValues({...values, [e.target.name]: e.target.value})        
     }
+
+    const submit = () => {
+        alert('form sent')
+    }
+
 
     return (
     <div>
@@ -21,6 +42,9 @@ export default function FormExample(){
                 <label for="lastName">Last Name</label>
                 <input name="lastName" type="text" id="lastName" onKeyUp={handleChange} />
             </div>
+
+            <input type="submit" disabled={values.valid == false} onClick={() => submit()} value="Submit Now" />
+
             <h1>Your name is: {values.firstName} {values.lastName}</h1>
 
             <hr />
